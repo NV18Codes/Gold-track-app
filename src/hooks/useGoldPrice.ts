@@ -29,8 +29,8 @@ export function useGoldPrice() {
   return useQuery({
     queryKey: ['goldPrice'],
     queryFn: fetchGoldPrice,
-    refetchInterval: 60000, // Refetch every minute
-    staleTime: 30000, // Consider data stale after 30 seconds
+    refetchInterval: 6 * 60 * 60 * 1000, // Refetch every 6 hours
+    staleTime: 3 * 60 * 60 * 1000, // Consider data stale after 3 hours
     retry: 2,
   });
 }
