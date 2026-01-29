@@ -40,13 +40,6 @@ export const MarketInfo = () => {
         </div>
       </div>
       
-      {/* Decorative bottom element */}
-      <div className="mt-6 pt-5 border-t border-border/20">
-        <div className="flex items-center justify-between text-xs text-muted-foreground/60">
-          <span>Data Source</span>
-          <span className="text-primary/70 font-medium">GoldAPI.io</span>
-        </div>
-      </div>
     </div>
   );
 };
