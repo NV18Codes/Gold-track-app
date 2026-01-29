@@ -42,30 +42,32 @@ export const PriceDisplay = ({
             <span className="text-muted-foreground text-sm font-medium tracking-wide">XAU / USD</span>
           </div>
           
-          <div className="number-highlight inline-block">
-            <h1 className="font-display text-7xl md:text-8xl font-bold gold-gradient-text mb-6 tracking-tight">
-              ${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </h1>
-          </div>
-          
-          <div className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl backdrop-blur-sm ${
-            isPositive 
-              ? 'bg-success/10 border border-success/20' 
-              : 'bg-destructive/10 border border-destructive/20'
-          }`}>
-            {isPositive ? (
-              <TrendingUp className="w-5 h-5 text-success" />
-            ) : (
-              <TrendingDown className="w-5 h-5 text-destructive" />
-            )}
-            <span className={`font-semibold text-lg ${isPositive ? 'text-success' : 'text-destructive'}`}>
-              {isPositive ? '+' : ''}{change.toFixed(2)}
-            </span>
-            <span className={`text-sm font-medium px-2 py-0.5 rounded-lg ${
-              isPositive ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <div className="number-highlight inline-block">
+              <h1 className="font-display text-6xl md:text-7xl font-bold gold-gradient-text tracking-tight">
+                ${price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </h1>
+            </div>
+            
+            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl backdrop-blur-sm ${
+              isPositive 
+                ? 'bg-success/10 border border-success/20' 
+                : 'bg-destructive/10 border border-destructive/20'
             }`}>
-              {isPositive ? '+' : ''}{changePercent.toFixed(2)}%
-            </span>
+              {isPositive ? (
+                <TrendingUp className="w-4 h-4 text-success" />
+              ) : (
+                <TrendingDown className="w-4 h-4 text-destructive" />
+              )}
+              <span className={`font-semibold ${isPositive ? 'text-success' : 'text-destructive'}`}>
+                {isPositive ? '+' : ''}{change.toFixed(2)}
+              </span>
+              <span className={`text-sm font-medium px-2 py-0.5 rounded-lg ${
+                isPositive ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'
+              }`}>
+                {isPositive ? '+' : ''}{changePercent.toFixed(2)}%
+              </span>
+            </div>
           </div>
         </div>
 
@@ -79,28 +81,30 @@ export const PriceDisplay = ({
               <span className="text-muted-foreground text-sm font-medium tracking-wide">XAU / INR</span>
             </div>
             
-            <div className="number-highlight inline-block">
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground/90 mb-4 tracking-tight">
-                ₹{inrPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </h2>
-            </div>
-            
-            {inrChange !== undefined && inrChangePercent !== undefined && (
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-sm ${
-                isInrPositive 
-                  ? 'bg-success/10 border border-success/15' 
-                  : 'bg-destructive/10 border border-destructive/15'
-              }`}>
-                {isInrPositive ? (
-                  <TrendingUp className="w-4 h-4 text-success" />
-                ) : (
-                  <TrendingDown className="w-4 h-4 text-destructive" />
-                )}
-                <span className={`text-sm font-medium ${isInrPositive ? 'text-success' : 'text-destructive'}`}>
-                  {isInrPositive ? '+' : ''}{inrChange.toFixed(2)} ({isInrPositive ? '+' : ''}{inrChangePercent.toFixed(2)}%)
-                </span>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <div className="number-highlight inline-block">
+                <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground/90 tracking-tight">
+                  ₹{inrPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </h2>
               </div>
-            )}
+              
+              {inrChange !== undefined && inrChangePercent !== undefined && (
+                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl backdrop-blur-sm ${
+                  isInrPositive 
+                    ? 'bg-success/10 border border-success/15' 
+                    : 'bg-destructive/10 border border-destructive/15'
+                }`}>
+                  {isInrPositive ? (
+                    <TrendingUp className="w-4 h-4 text-success" />
+                  ) : (
+                    <TrendingDown className="w-4 h-4 text-destructive" />
+                  )}
+                  <span className={`text-sm font-medium ${isInrPositive ? 'text-success' : 'text-destructive'}`}>
+                    {isInrPositive ? '+' : ''}{inrChange.toFixed(2)} ({isInrPositive ? '+' : ''}{inrChangePercent.toFixed(2)}%)
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
         )}
         
