@@ -81,7 +81,7 @@ export const PriceDisplay = ({
       )}
       
       <p className="text-muted-foreground text-xs mt-4">
-        Per Troy Ounce • Updated just now
+        Per 10 Grams • Updated just now
       </p>
     </div>
   );
