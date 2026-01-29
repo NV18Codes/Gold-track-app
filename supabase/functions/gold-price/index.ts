@@ -5,25 +5,27 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 }
 
-// Fallback data when API quota is exceeded (realistic gold prices per troy ounce)
+// Fallback data when API quota is exceeded
+// Current 24 Karat gold prices (per troy ounce) - Updated Jan 2025
+// 24K gold ~$83/gram = ~$2580/troy oz (31.1g)
 const FALLBACK_DATA = {
   usd: {
-    price: 3280.50,
-    prev_close_price: 3265.20,
-    open_price: 3270.00,
-    high_price: 3295.80,
-    low_price: 3258.40,
-    ch: 15.30,
-    chp: 0.47,
+    price: 2750.00,        // USD per troy ounce
+    prev_close_price: 2735.50,
+    open_price: 2740.00,
+    high_price: 2765.80,
+    low_price: 2728.40,
+    ch: 14.50,
+    chp: 0.53,
   },
   inr: {
-    price: 285000,
-    prev_close_price: 283500,
-    open_price: 284000,
-    high_price: 287500,
-    low_price: 282800,
+    price: 243000,         // INR per troy ounce (~₹78,150/10g)
+    prev_close_price: 241500,
+    open_price: 242000,
+    high_price: 245000,
+    low_price: 240500,
     ch: 1500,
-    chp: 0.53,
+    chp: 0.62,
   },
   timestamp: Date.now(),
   metal: 'XAU',
