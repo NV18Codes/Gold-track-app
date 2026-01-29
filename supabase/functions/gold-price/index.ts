@@ -56,24 +56,28 @@ serve(async (req) => {
 
     console.log('Gold prices fetched successfully - USD:', usdData.price, 'INR:', inrData?.price)
 
-    // Transform the response to match our frontend expectations
+    // Convert from per troy ounce to per 10 grams
+    // 1 troy ounce = 31.1035 grams
+    const TROY_OUNCE_TO_10G = 10 / 31.1035;
+
+    // Transform the response to match our frontend expectations (per 10 grams)
     const result = {
       usd: {
-        price: usdData.price,
-        previousClose: usdData.prev_close_price,
-        open: usdData.open_price,
-        high: usdData.high_price,
-        low: usdData.low_price,
-        change: usdData.ch,
+        price: usdData.price * TROY_OUNCE_TO_10G,
+        previousClose: usdData.prev_close_price * TROY_OUNCE_TO_10G,
+        open: usdData.open_price * TROY_OUNCE_TO_10G,
+        high: usdData.high_price * TROY_OUNCE_TO_10G,
+        low: usdData.low_price * TROY_OUNCE_TO_10G,
+        change: usdData.ch * TROY_OUNCE_TO_10G,
         changePercent: usdData.chp,
       },
       inr: inrData ? {
-        price: inrData.price,
-        previousClose: inrData.prev_close_price,
-        open: inrData.open_price,
-        high: inrData.high_price,
-        low: inrData.low_price,
-        change: inrData.ch,
+        price: inrData.price * TROY_OUNCE_TO_10G,
+        previousClose: inrData.prev_close_price * TROY_OUNCE_TO_10G,
+        open: inrData.open_price * TROY_OUNCE_TO_10G,
+        high: inrData.high_price * TROY_OUNCE_TO_10G,
+        low: inrData.low_price * TROY_OUNCE_TO_10G,
+        change: inrData.ch * TROY_OUNCE_TO_10G,
         changePercent: inrData.chp,
       } : null,
       timestamp: usdData.timestamp,
