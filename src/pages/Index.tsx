@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TrendingUp, TrendingDown, BarChart3, DollarSign, Target, Gem, RefreshCw, Sparkles, LogOut, User } from "lucide-react";
+import { TrendingUp, TrendingDown, BarChart3, DollarSign, Target, Gem, RefreshCw, Sparkles, LogOut, User, Wallet } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
 import { StatCard } from "@/components/StatCard";
 import { GoldChart } from "@/components/GoldChart";
@@ -9,12 +9,14 @@ import { MarketInfo } from "@/components/MarketInfo";
 import { generateChartData, goldStats } from "@/lib/goldData";
 import { useGoldPrice } from "@/hooks/useGoldPrice";
 import { useAuth } from "@/hooks/useAuth";
+import { useAnimatedAssets } from "@/hooks/useAnimatedAssets";
 
 const Index = () => {
   const [timeframe, setTimeframe] = useState('24H');
   const chartData = generateChartData(timeframe);
   const { data: livePrice, isLoading, isError, refetch } = useGoldPrice();
   const { user, profile, loading: authLoading, signOut } = useAuth();
+  const { formatted: assetsFormatted, monthlyGrowth } = useAnimatedAssets();
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -143,9 +145,27 @@ const Index = () => {
 
         {/* Assets Card */}
         <div className="mb-10 flex justify-center">
-          <div className="card-glass rounded-2xl px-8 py-5 inline-flex flex-col items-center gap-1">
-            <span className="text-sm text-muted-foreground tracking-wide">Assets</span>
-            <span className="text-2xl font-bold gold-gradient-text">₹17,63,000</span>
+          <div className="card-glass rounded-2xl px-8 py-5 inline-flex items-center gap-6">
+            <div className="p-3 rounded-xl bg-primary/10">
+              <Wallet className="w-6 h-6 text-primary icon-glow" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm text-muted-foreground tracking-wide">Your Assets</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold gold-gradient-text font-display tabular-nums">
+                  ₹{assetsFormatted}
+                </span>
+                <span className="text-xs text-success flex items-center gap-1">
+                  <TrendingUp className="w-3 h-3" />
+                  +{monthlyGrowth}%/mo
+                </span>
+              </div>
+            </div>
+            <div className="h-10 w-px bg-border/30" />
+            <div className="flex flex-col items-center">
+              <span className="text-xs text-muted-foreground">Live</span>
+              <span className="w-2 h-2 rounded-full bg-success animate-pulse mt-1" />
+            </div>
           </div>
         </div>
 
